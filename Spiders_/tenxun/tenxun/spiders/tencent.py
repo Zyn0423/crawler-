@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import scrapy
 import time
+from tenxun.items import TenxunItem
 
 class TencentSpider(scrapy.Spider):
     name = 'tencent'
@@ -31,9 +32,9 @@ class TencentSpider(scrapy.Spider):
         pass
 
     def parse_detali(self,response):
-        item={}
+        item=TenxunItem()
         # 从meta中取出传递的内容
-        item['职位类别']=response.meta['title']
-        item['工作职责']=response.xpath("//*[@class='squareli']//text()").extract()
+        item['title']=response.meta['title']
+        item['workeduty']=response.xpath("//*[@class='squareli']//text()").extract()
         print(item)
         pass
