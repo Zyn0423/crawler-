@@ -24,7 +24,7 @@ class TencentSpider(scrapy.Spider):
         next_=response.xpath("//*[@id='next']/@href").extract_first()
 
         if next_ !='javascript:;':
-            time.sleep(2)
+            # time.sleep(2)
             url_next='http://hr.tencent.com/'+ next_
             yield scrapy.Request(url=url_next,callback=self.parse)
 
@@ -32,9 +32,10 @@ class TencentSpider(scrapy.Spider):
         pass
 
     def parse_detali(self,response):
-        item=TenxunItem()
+        # item=TenxunItem()
+        item={}
         # 从meta中取出传递的内容
         item['title']=response.meta['title']
         item['workeduty']=response.xpath("//*[@class='squareli']//text()").extract()
-        print(item)
+        yield item
         pass
