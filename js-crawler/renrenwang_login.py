@@ -37,7 +37,7 @@ class RenrenL(object):
         with open('Barrett.js', 'r') as f:
             self.js.execute(f.read())
         # 给JS解析器添加所需要的变量
-        self.js.t={'password':'z5791846'}
+        self.js.t={'password':''}
         self.js.n=data
         # 再加载关键部位的JS加密代码
         js= 't.password = t.password.split("").reverse().join(""),' \
@@ -62,12 +62,13 @@ class RenrenL(object):
         password_=self.parersJS(data)
         # 构造post请求参数
         data1 = {
-            "phoneNum": "15321210423",
+            "phoneNum": "",
             "password": password_,
             "c1": "0",
             "rKey": data['rkey']
         }
         self.login(data1)
+        "登陆成功"
 if __name__ == '__main__':
     ren=RenrenL()
     ren.run()
