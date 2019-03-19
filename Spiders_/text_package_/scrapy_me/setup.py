@@ -5,7 +5,9 @@ from setuptools import (
     setup,
 )
 
-
+"""
+打包
+"""
 def parse_requirements(filename):
     """ load requirements from a pip requirements file """
     lineiter = (line.strip() for line in open(filename))
