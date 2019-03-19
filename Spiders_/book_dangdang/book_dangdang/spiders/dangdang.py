@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import scrapy
 from scrapy_redis.spiders import RedisCrawlSpider
+# from scrapy.linkextractor import LinkExtractor   链接提取器
 
 import re
 class DangdangSpider(RedisCrawlSpider):
