@@ -8,7 +8,7 @@ import requests
 
 class Downloader(object):
     # 1. 根据请求对象，发起请求，获取响应
-    def down_pares(self,request):
+    def get_response(self,request):
         if request.method.upper('GET'):
             resp=requests.get(url=request.url,headers=request.headers)
 
