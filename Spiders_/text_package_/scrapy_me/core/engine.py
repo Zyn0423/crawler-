@@ -1,9 +1,9 @@
 # coding=utf-8
-from Spiders_.scrapy_me.core.downloader import Downloader
-from Spiders_.scrapy_me.core.pipeline import Pipeline
-from Spiders_.scrapy_me.core.spider import Spider
-from Spiders_.scrapy_me.core.scheduler import Scheduler
-from Spiders_.scrapy_me.http.request import Request
+from Spiders_.text_package_.scrapy_me.core.downloader import Downloader
+from Spiders_.text_package_.scrapy_me.core.pipeline import Pipeline
+from Spiders_.text_package_.scrapy_me.core.spider import Spider
+from Spiders_.text_package_.scrapy_me.core.scheduler import Scheduler
+from Spiders_.text_package_.scrapy_me.http.request import Request
 # 引擎组件
 # 负责驱动各大组件，通过调用各自对外提供的API接口，实现它们之间的交互和协作
 # 提供整个框架的启动入口
@@ -43,9 +43,4 @@ class Engine(object):
         else:
 
             self.pipeline.process_item(response)
-
-if __name__ == '__main__':
-    eng=Engine()
-    eng._start_engine()
-
 

@@ -3,7 +3,7 @@
 # 根据请求对象(Request)，发起HTTP、HTTPS网络请求，拿到HTTP、HTTPS响应，构建响应对象(Response)
 # 并返回
 
-from Spiders_.scrapy_me.http.response import Response
+from Spiders_.text_package_.scrapy_me.http.response import Response
 import requests
 
 class Downloader(object):

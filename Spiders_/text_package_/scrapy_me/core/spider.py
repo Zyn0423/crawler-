@@ -1,6 +1,6 @@
 # coding=utf-8
-from Spiders_.scrapy_me.http.request import Request
-from Spiders_.scrapy_me.item import Item
+from Spiders_.text_package_.scrapy_me.http.request import Request
+from Spiders_.text_package_.scrapy_me.item import Item
 # 爬虫组件
 # 构建请求信息(初始的)，也就是生成请求对象(Request)
 # 解析响应对象，返回数据对象(Item)
