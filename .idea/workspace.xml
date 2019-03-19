@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="fb0cb9b1-d212-4dd5-96b9-de43e2001469" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Spiders_/scrapy_me/core/scheduler.py" afterPath="$PROJECT_DIR$/Spiders_/scrapy_me/core/scheduler.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Spiders_/scrapy_me/core/spider.py" afterPath="$PROJECT_DIR$/Spiders_/scrapy_me/core/spider.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Spiders_/scrapy_me/core/downloader.py" afterPath="$PROJECT_DIR$/Spiders_/scrapy_me/core/downloader.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Spiders_/scrapy_me/core/pipeline.py" afterPath="$PROJECT_DIR$/Spiders_/scrapy_me/core/pipeline.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,33 +24,21 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="pipeline.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="pipeline.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Spiders_/scrapy_me/core/pipeline.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="16" lean-forward="true" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
+            <state relative-caret-position="184">
+              <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="spider.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Spiders_/scrapy_me/core/spider.py">
+      <file leaf-file-name="engine.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Spiders_/scrapy_me/core/engine.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="29" lean-forward="false" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
-              <folding>
-                <element signature="e#15#57#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="scheduler.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Spiders_/scrapy_me/core/scheduler.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="11" lean-forward="true" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
+            <state relative-caret-position="180">
+              <caret line="10" column="3" lean-forward="true" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -104,14 +92,14 @@
         <option value="$PROJECT_DIR$/Spiders_/book_dangdang/book_dangdang/settings.py" />
         <option value="$PROJECT_DIR$/js-crawler/renrenwang_login.py" />
         <option value="$PROJECT_DIR$/Spiders_/book_dangdang/book_dangdang/spiders/dangdang.py" />
-        <option value="$PROJECT_DIR$/Spiders_/scrapy_me/core/downloader.py" />
-        <option value="$PROJECT_DIR$/Spiders_/scrapy_me/core/pipeline.py" />
         <option value="$PROJECT_DIR$/Spiders_/scrapy_me/core/engine.py" />
         <option value="$PROJECT_DIR$/Spiders_/scrapy_me/http/request.py" />
         <option value="$PROJECT_DIR$/Spiders_/scrapy_me/http/response.py" />
         <option value="$PROJECT_DIR$/Spiders_/scrapy_me/item.py" />
         <option value="$PROJECT_DIR$/Spiders_/scrapy_me/core/scheduler.py" />
         <option value="$PROJECT_DIR$/Spiders_/scrapy_me/core/spider.py" />
+        <option value="$PROJECT_DIR$/Spiders_/scrapy_me/core/downloader.py" />
+        <option value="$PROJECT_DIR$/Spiders_/scrapy_me/core/pipeline.py" />
       </list>
     </option>
   </component>
@@ -578,7 +566,21 @@
       <option name="project" value="LOCAL" />
       <updated>1552993974072</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="'构造爬虫、调度器'">
+      <created>1553000539847</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1553000539847</updated>
+    </task>
+    <task id="LOCAL-00006" summary="'构造下载器对象,并返回'">
+      <created>1553003940358</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1553003940358</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -587,13 +589,13 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29141274" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17663044" sideWeight="0.23213297" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.42391303" sideWeight="0.23213297" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32880434" sideWeight="0.49806094" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38043478" sideWeight="0.4936288" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17663044" sideWeight="0.767867" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.42391303" sideWeight="0.767867" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Concurrent Activities Diagram" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32880434" sideWeight="0.49806094" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -617,7 +619,9 @@
     <MESSAGE value="'多协程队列爬取'" />
     <MESSAGE value="'selenium使用方法'" />
     <MESSAGE value="'构造ｉｔｅｍ对象'" />
-    <option name="LAST_COMMIT_MESSAGE" value="'构造ｉｔｅｍ对象'" />
+    <MESSAGE value="'构造爬虫、调度器'" />
+    <MESSAGE value="'构造下载器对象,并返回'" />
+    <option name="LAST_COMMIT_MESSAGE" value="'构造下载器对象,并返回'" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -906,34 +910,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Spiders_/scrapy_me/core/downloader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Spiders_/scrapy_me/core/engine.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="3" lean-forward="true" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Spiders_/book_dangdang/book_dangdang/items.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Spiders_/scrapy_me/http/response.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -954,9 +934,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Spiders_/scrapy_me/core/scheduler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="496">
+          <caret line="30" column="16" lean-forward="false" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Spiders_/scrapy_me/http/request.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
+        <state relative-caret-position="45">
           <caret line="3" column="13" lean-forward="false" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="13" />
           <folding />
         </state>
@@ -964,16 +952,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Spiders_/scrapy_me/item.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="10" lean-forward="false" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="10" />
+        <state relative-caret-position="90">
+          <caret line="6" column="13" lean-forward="true" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Spiders_/scrapy_me/core/pipeline.py">
+    <entry file="file://$PROJECT_DIR$/Spiders_/scrapy_me/http/response.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="16" lean-forward="true" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
+        <state relative-caret-position="180">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -988,10 +976,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Spiders_/scrapy_me/core/scheduler.py">
+    <entry file="file://$PROJECT_DIR$/Spiders_/scrapy_me/core/downloader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="11" lean-forward="true" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
+        <state relative-caret-position="270">
+          <caret line="18" column="36" lean-forward="false" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
+          <folding>
+            <element signature="e#97#141#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Spiders_/scrapy_me/core/engine.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="3" lean-forward="true" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Spiders_/scrapy_me/core/pipeline.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
       </provider>

@@ -16,6 +16,7 @@ class Downloader(object):
             resp=requests.post(url=request.url,headers=request.headers,data=request.data)
 
         else:
+            # 如果方法不是get或者post，抛出一个异常
             raise Exception ('暂时不支持method其他请求方式')
         """
         # 响应地址
