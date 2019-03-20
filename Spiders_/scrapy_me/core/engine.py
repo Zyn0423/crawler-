@@ -4,6 +4,9 @@ from Spiders_.scrapy_me.core.pipeline import Pipeline
 from Spiders_.scrapy_me.core.spider import Spider
 from Spiders_.scrapy_me.core.scheduler import Scheduler
 from Spiders_.scrapy_me.http.request import Request
+from Spiders_.scrapy_me.middlewares.downloader_middlewares import DownloaderMiddleware
+from Spiders_.scrapy_me.middlewares.spider_middlewares import Spider_middlewares
+
 # 引擎组件
 # 负责驱动各大组件，通过调用各自对外提供的API接口，实现它们之间的交互和协作
 # 提供整个框架的启动入口
@@ -22,27 +25,40 @@ class Engine(object):
         self.pipeline=Pipeline()
         self.spider=Spider()
         self.scheduler=Scheduler()
+        self.downloaderMiddleware=DownloaderMiddleware()
+        self.spider_middlewares=Spider_middlewares()
 
     def _start_engine(self):
         # 获取ＵＲＬ
         # 1.爬虫模块发出初始请求
         start_request=self.spider.start_requests()
+        # 1.1利用爬虫中间件预处理请求对象
+        start_request=self.spider_middlewares.process_request(start_request)
         # 2.把初始请求添加给调度器
         self.scheduler.add_request(start_request)
         # 3.从调度器获取请求对象，交给下载器发起请求，获取一个响应对象
         request=self.scheduler.get_request()
+        # 3.1利用下载器中间件预处理请求对象
+        request=self.downloaderMiddleware.process_request(request)
         # 4.利用下载器发起请求
         response=self.downloader.get_response(request)
+        # 4.1利用下载器中间件预处理响应对象
+        response=self.downloaderMiddleware.process_response(response)
+        # 4.2利用爬虫中间件预处理响应对象
+        self.spider_middlewares.process_response(response)
         # 5．利用爬虫的解析响应的方式，处理响应，得到结果
         resp=self.spider.pares(response)
         # ６.判断结果对象
         # 如果是请求对象，那么就在交给调度器
         if isinstance(resp,Request):
-            self.scheduler.add_request(response)
+            # 6.1利用爬虫中间件预处理请求对象
+            resp=self.spider_middlewares.process_request(resp)
+
+            self.scheduler.add_request(resp)
             # 否则，就交给管道处理
         else:
 
-            self.pipeline.process_item(response)
+            self.pipeline.process_item(resp)
 
 if __name__ == '__main__':
     eng=Engine()
