@@ -6,6 +6,9 @@ from Spiders_.scrapy_me.core.scheduler import Scheduler
 from Spiders_.scrapy_me.http.request import Request
 from Spiders_.scrapy_me.middlewares.downloader_middlewares import DownloaderMiddleware
 from Spiders_.scrapy_me.middlewares.spider_middlewares import Spider_middlewares
+# 添加log
+from datetime import datetime
+from Spiders_.scrapy_me.utility.log import logger
 
 # 引擎组件
 # 负责驱动各大组件，通过调用各自对外提供的API接口，实现它们之间的交互和协作
@@ -27,6 +30,16 @@ class Engine(object):
         self.scheduler=Scheduler()
         self.downloaderMiddleware=DownloaderMiddleware()
         self.spider_middlewares=Spider_middlewares()
+
+    def start(self):
+        '''启动整个引擎'''
+        start = datetime.now()  # 起始时间
+        logger.info("开始运行时间：%s" % start)  # 使用日志记录起始运行时间
+        self._start_engine()
+        stop = datetime.now()  # 结束时间
+        logger.info("开始运行时间：%s" % stop)  # 使用日志记录结束运行时间
+        logger.info("耗时：%.2f" % (stop - start).total_seconds())  # 使用日志记录运行耗时
+
 
     def _start_engine(self):
         # 获取ＵＲＬ
