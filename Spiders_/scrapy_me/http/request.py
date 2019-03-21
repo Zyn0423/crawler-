@@ -2,7 +2,7 @@
 
 # 构造请求对象
 class Request(object):
-    def __init__(self,url,method='GET',params=None,headers=None,data=None):
+    def __init__(self,url,method='GET',params=None,headers=None,data=None,meta={},parse='parse'):
         # 请求地址
         self.url=url
         # 请求方法
@@ -13,3 +13,7 @@ class Request(object):
         self.headers=headers
         # 请求体
         self.data=data
+
+        self.meta=meta
+
+        self.parse=parse

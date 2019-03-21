@@ -1,7 +1,7 @@
 # coding=utf-8
 from Spiders_.scrapy_me.core.downloader import Downloader
 from Spiders_.scrapy_me.core.pipeline import Pipeline
-from Spiders_.scrapy_me.core.spider import Spider
+# from Spiders_.scrapy_me.core.spider import Spider
 from Spiders_.scrapy_me.core.scheduler import Scheduler
 from Spiders_.scrapy_me.http.request import Request
 from Spiders_.scrapy_me.middlewares.downloader_middlewares import DownloaderMiddleware
@@ -42,6 +42,7 @@ class Engine(object):
 
         self.total_request_nums = 0
         self.total_response_nums = 0
+
 
     def start(self):
         '''启动整个引擎'''
