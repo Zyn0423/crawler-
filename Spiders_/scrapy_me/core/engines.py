@@ -1,4 +1,4 @@
-# coding=utf-8
+# # coding=utf-8
 from Spiders_.scrapy_me.core.downloader import Downloader
 from Spiders_.scrapy_me.core.pipeline import Pipeline
 # from Spiders_.scrapy_me.core.spider import Spider
@@ -32,8 +32,8 @@ response交给爬虫模块进行解析，提取结果
 
 
 class Engine(object):
-    def __init__(self, spider):  # 接收外部传入的爬虫对象
-        self.spider = spider  # 爬虫对象
+    def __init__(self, spiders):  # 接收外部传入的爬虫对象
+        self.spiders = spiders  # 爬虫对象
         self.downloader = Downloader()
         self.pipeline = Pipeline()
         self.scheduler = Scheduler()
@@ -60,13 +60,18 @@ class Engine(object):
     def _start_request(self):
         # 获取ＵＲＬ
         # 1.爬虫模块发出初始请求
-        for start_request in self.spider.start_requests():
-            # 1.1利用爬虫中间件预处理请求对象
-            start_request = self.spider_middlewares.process_request(start_request)
-            # 2.把初始请求添加给调度器
-            self.scheduler.add_request(start_request)
+        # 1.1.1.1 遍历字典取出k ,v
+        for spider_name,spider  in self.spiders.items():
+            # v:spider
+            for start_request in spider.start_requests():
+                # 1.1利用爬虫中间件预处理请求对象
+                start_request = self.spider_middlewares.process_request(start_request)
+                # 1.1.1.2:为请求对象绑定它所属的爬虫的名称
+                start_request.spider_name=spider_name
+                # 2.把初始请求添加给调度器
+                self.scheduler.add_request(start_request)
 
-            self.total_request_nums += 1
+                self.total_request_nums += 1
 
     def _execute_request_response_item(self):
         # 3.从调度器获取请求对象，交给下载器发起请求，获取一个响应对象
@@ -85,11 +90,19 @@ class Engine(object):
         response.meta = request.meta
         # 4.2利用爬虫中间件预处理响应对象
         self.spider_middlewares.process_response(response)
+        # 2.1.1.1:根据request的spider_name属性，获取对应的爬虫对象
+        spider=self.spiders[request.spider_name]
+
+
         # 5．利用爬虫的解析响应的方式，处理响应，得到结果
         # 5.1.1　getattr()函数　　类＋类方法名的字符串＝类方法对象
         # 此处返回的变量parse是self.spider类当中的一个函数对象此时该函数还没有被调用!
         # getattr(实例化的类对象, 该类当中包含的方法名的字符串)
-        parse = getattr(self.spider, request.parse)
+        # parse = getattr(self.spider, request.parse) 2.1.1.2: 修改前
+        # 2.1.1.2:
+        parse = getattr(spider, request.parse)   # 修改后
+
+
         # for resp in self.spider.pares(response):  修改前
         for resp in parse(response):  # 修改后
             # ６.判断结果对象
@@ -98,6 +111,9 @@ class Engine(object):
                 # 6.1利用爬虫中间件预处理请求对象
                 # 在解析函数得到request对象之后，使用process_request进行处理
                 resp = self.spider_middlewares.process_request(resp)
+                # 3.1.1.1: 给request对象增加一个spider_name属性
+                resp.spider_name=request.spider_name
+
                 self.scheduler.add_request(resp)
                 self.total_request_nums += 1
             # 7.如果不是，调用pipeline的process_item方法处理结果
@@ -116,3 +132,6 @@ class Engine(object):
             # 程序退出条件
             if self.total_response_nums >= self.total_request_nums:
                 break
+
+
+

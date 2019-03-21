@@ -10,7 +10,7 @@ class Spider(object):
     1. 构建请求信息(初始的)，也就是生成请求对象(Request)
     2. 解析响应对象，返回数据对象(Item)或者新的请求对象(Request)
     '''
-    # urls = 'http://www.baidu.com'
+    name=''
     start_urls = []
 
     # def start_requests(self):
