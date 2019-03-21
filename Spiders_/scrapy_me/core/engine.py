@@ -68,7 +68,7 @@ class Engine(object):
             resp = self.spider_middlewares.process_request(resp)
 
             self.scheduler.add_request(resp)
-            # 否则，就交给管道处理
+        # 否则，就交给管道处理
         else:
 
             self.pipeline.process_item(resp)

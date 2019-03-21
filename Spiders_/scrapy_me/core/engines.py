@@ -10,6 +10,7 @@ from Spiders_.scrapy_me.middlewares.spider_middlewares import Spider_middlewares
 from datetime import datetime
 from Spiders_.scrapy_me.utility.log import logger
 import time
+
 # 引擎组件
 # 负责驱动各大组件，通过调用各自对外提供的API接口，实现它们之间的交互和协作
 # 提供整个框架的启动入口
@@ -31,7 +32,6 @@ response交给爬虫模块进行解析，提取结果
 
 
 class Engine(object):
-
     def __init__(self, spider):  # 接收外部传入的爬虫对象
         self.spider = spider  # 爬虫对象
         self.downloader = Downloader()
@@ -42,7 +42,6 @@ class Engine(object):
 
         self.total_request_nums = 0
         self.total_response_nums = 0
-
 
     def start(self):
         '''启动整个引擎'''
@@ -67,9 +66,7 @@ class Engine(object):
             # 2.把初始请求添加给调度器
             self.scheduler.add_request(start_request)
 
-            self.total_request_nums +=1
-
-
+            self.total_request_nums += 1
 
     def _execute_request_response_item(self):
         # 3.从调度器获取请求对象，交给下载器发起请求，获取一个响应对象
@@ -84,11 +81,17 @@ class Engine(object):
         response = self.downloader.get_response(request)
         # 4.1利用下载器中间件预处理响应对象
         response = self.downloaderMiddleware.process_response(response)
+        # 4.1.1　获取请求对象属性传递meta赋值给响应对象
+        response.meta = request.meta
         # 4.2利用爬虫中间件预处理响应对象
         self.spider_middlewares.process_response(response)
         # 5．利用爬虫的解析响应的方式，处理响应，得到结果
-        for resp in self.spider.pares(response):
-            # resp = self.spider.pares(response)
+        # 5.1.1　getattr()函数　　类＋类方法名的字符串＝类方法对象
+        # 此处返回的变量parse是self.spider类当中的一个函数对象此时该函数还没有被调用!
+        # getattr(实例化的类对象, 该类当中包含的方法名的字符串)
+        parse = getattr(self.spider, request.parse)
+        # for resp in self.spider.pares(response):  修改前
+        for resp in parse(response):  # 修改后
             # ６.判断结果对象
             # 如果是请求对象，那么就在交给调度器
             if isinstance(resp, Request):
@@ -103,18 +106,13 @@ class Engine(object):
                 self.pipeline.process_item(resp)
         self.total_response_nums += 1
 
-
-
     def _start_engine(self):
 
-      self._start_request()
+        self._start_request()
 
-      while True:
-          time.sleep(0.001)
-          self._execute_request_response_item()
-          # 程序退出条件
-          if self.total_response_nums >= self.total_request_nums:
-              break
-
-
-
+        while True:
+            time.sleep(0.001)
+            self._execute_request_response_item()
+            # 程序退出条件
+            if self.total_response_nums >= self.total_request_nums:
+                break
