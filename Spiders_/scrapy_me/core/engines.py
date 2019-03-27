@@ -32,13 +32,13 @@ response交给爬虫模块进行解析，提取结果
 
 
 class Engine(object):
-    def __init__(self, spiders,pipelines=[]):  # 接收外部传入的爬虫对象
+    def __init__(self, spiders,pipelines=[],spider_mids=[],downloader_mids=[]):  # 接收外部传入的爬虫对象
         self.spiders = spiders  # 爬虫对象
         self.downloader = Downloader()
         self.pipelines = pipelines
         self.scheduler = Scheduler()
-        self.downloaderMiddleware = DownloaderMiddleware()
-        self.spider_middlewares = Spider_middlewares()
+        self.downloaderMiddlewares = downloader_mids
+        self.spider_middlewaress = spider_mids
 
         self.total_request_nums = 0
         self.total_response_nums = 0
@@ -65,7 +65,8 @@ class Engine(object):
             # v:spider
             for start_request in spider.start_requests():
                 # 1.1利用爬虫中间件预处理请求对象
-                start_request = self.spider_middlewares.process_request(start_request)
+                for spider_middlewares in self.spider_middlewaress:   # 遍历爬虫对象１．１．１．１．１
+                    start_request = spider_middlewares.process_request(start_request)
                 # 1.1.1.2:为请求对象绑定它所属的爬虫的名称
                 start_request.spider_name=spider_name
                 # 2.把初始请求添加给调度器
@@ -81,15 +82,18 @@ class Engine(object):
             return
 
         # 3.1利用下载器中间件预处理请求对象
-        request = self.downloaderMiddleware.process_request(request)
+        for downloaderMiddleware in self.downloaderMiddlewares:  #1.1.1.1.1.2
+            request =downloaderMiddleware.process_request(request)
         # 4.利用下载器发起请求
         response = self.downloader.get_response(request)
         # 4.1利用下载器中间件预处理响应对象
-        response = self.downloaderMiddleware.process_response(response)
+        for downloaderMiddleware in self.downloaderMiddlewares:      #1.1.1.1.1.3
+            response = downloaderMiddleware.process_response(response)
         # 4.1.1　获取请求对象属性传递meta赋值给响应对象
         response.meta = request.meta
         # 4.2利用爬虫中间件预处理响应对象
-        self.spider_middlewares.process_response(response)
+        for spider_middlewares in self.spider_middlewaress:       #1.1.1.1.1.4
+            spider_middlewares.process_response(response)
         # 2.1.1.1:根据request的spider_name属性，获取对应的爬虫对象
         spider=self.spiders[request.spider_name]
 
@@ -110,7 +114,8 @@ class Engine(object):
             if isinstance(resp, Request):
                 # 6.1利用爬虫中间件预处理请求对象
                 # 在解析函数得到request对象之后，使用process_request进行处理
-                resp = self.spider_middlewares.process_request(resp)
+                for spider_middlewares in self.spider_middlewaress:    #1.1.1.1.1.5
+                    resp = spider_middlewares.process_request(resp)
                 # 3.1.1.1: 给request对象增加一个spider_name属性
                 resp.spider_name=request.spider_name
 
