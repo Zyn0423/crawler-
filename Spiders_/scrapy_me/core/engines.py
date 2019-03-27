@@ -32,10 +32,10 @@ response交给爬虫模块进行解析，提取结果
 
 
 class Engine(object):
-    def __init__(self, spiders):  # 接收外部传入的爬虫对象
+    def __init__(self, spiders,pipelines=[]):  # 接收外部传入的爬虫对象
         self.spiders = spiders  # 爬虫对象
         self.downloader = Downloader()
-        self.pipeline = Pipeline()
+        self.pipelines = pipelines
         self.scheduler = Scheduler()
         self.downloaderMiddleware = DownloaderMiddleware()
         self.spider_middlewares = Spider_middlewares()
@@ -118,8 +118,12 @@ class Engine(object):
                 self.total_request_nums += 1
             # 7.如果不是，调用pipeline的process_item方法处理结果
             else:
+                # 修改后，遍历管道　　 # 就通过process_item()
 
-                self.pipeline.process_item(resp)
+                # 传递数据给管道
+                for pipeline in self.pipelines:
+
+                    pipeline.process_item(resp,spider)    #添加spider对象
         self.total_response_nums += 1
 
     def _start_engine(self):
