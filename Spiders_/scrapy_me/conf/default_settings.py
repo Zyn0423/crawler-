@@ -20,3 +20,7 @@ DOWNLOADER_MIDDLEWARES = []
 
 # 控制最大并发数
 MAX_ASYNC_THREAD_NUMBER=3
+
+# 异步并发的方式 thread or coroutine 线程 或 协程
+# 重新设置该值，自动覆盖
+ASYNC_TYPE = 'thread' # 默认为线程的方式

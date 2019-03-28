@@ -1,19 +1,29 @@
 # # coding=utf-8
 import importlib
-from multiprocessing.dummy import Pool
-from Spiders_.scrapy_me.core.test.setting import SPIDERS,PIPELINES,SPIDER_MIDDLEWARES,DOWNLOADER_MIDDLEWARES,MAX_ASYNC_THREAD_NUMBER
-from Spiders_.scrapy_me.core.downloader import Downloader
-# from Spiders_.scrapy_me.core.pipeline import Pipeline
-# # from Spiders_.scrapy_me.core.spider import Spider
-from Spiders_.scrapy_me.core.scheduler import Scheduler
-from Spiders_.scrapy_me.http.request import Request
-# from Spiders_.scrapy_me.middlewares.downloader_middlewares import DownloaderMiddleware
-# from Spiders_.scrapy_me.middlewares.spider_middlewares import Spider_middlewares
-# 添加log
+import time
 from datetime import datetime
 from Spiders_.scrapy_me.utility.log import logger
-import time
 
+from Spiders_.scrapy_me.core.test.setting import SPIDERS,PIPELINES,SPIDER_MIDDLEWARES,DOWNLOADER_MIDDLEWARES,MAX_ASYNC_THREAD_NUMBER,ASYNC_TYPE
+# 异步并发的方式 thread or coroutine 线程 或 协程
+if ASYNC_TYPE=='thread':
+    from multiprocessing.dummy import Pool
+    logger.info('异步线程模式')
+elif ASYNC_TYPE =='coroutine':
+    from Spiders_.scrapy_me.core.async.coroutine import Pool
+
+    logger.info('异步协程模式')
+else:
+    raise Exception("不支持的异步类型：{}, 只能是'thread'或者'coroutine'".format(ASYNC_TYPE))
+    # 注意：
+    # 由于打patch补丁是为了替换掉socket为非阻塞的
+    # 而下载器中正好使用了requests模块，如果在这之后导入协程池，会导致requests中使用的socket没有被替换成功
+    # 从而有可能导致使用出现问题
+    # 所以在导入并发池对象之后再导入框架的各种类对象
+
+from Spiders_.scrapy_me.core.downloader import Downloader
+from Spiders_.scrapy_me.core.scheduler import Scheduler
+from Spiders_.scrapy_me.http.request import Request
 # 引擎组件
 # 负责驱动各大组件，通过调用各自对外提供的API接口，实现它们之间的交互和协作
 # 提供整个框架的启动入口

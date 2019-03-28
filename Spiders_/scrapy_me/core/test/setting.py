@@ -25,3 +25,6 @@ SPIDER_MIDDLEWARES = []
 DOWNLOADER_MIDDLEWARES = []
 # 控制最大并发数
 MAX_ASYNC_THREAD_NUMBER=3
+
+# 异步并发的方式 thread or coroutine 线程 或 协程
+ASYNC_TYPE = 'coroutine' # 覆盖为协程的方式
