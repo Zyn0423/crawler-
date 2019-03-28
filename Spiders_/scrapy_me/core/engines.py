@@ -1,6 +1,7 @@
 # # coding=utf-8
 import importlib
-from Spiders_.scrapy_me.core.test.setting import SPIDERS,PIPELINES,SPIDER_MIDDLEWARES,DOWNLOADER_MIDDLEWARES
+from multiprocessing.dummy import Pool
+from Spiders_.scrapy_me.core.test.setting import SPIDERS,PIPELINES,SPIDER_MIDDLEWARES,DOWNLOADER_MIDDLEWARES,MAX_ASYNC_THREAD_NUMBER
 from Spiders_.scrapy_me.core.downloader import Downloader
 # from Spiders_.scrapy_me.core.pipeline import Pipeline
 # # from Spiders_.scrapy_me.core.spider import Spider
@@ -43,6 +44,8 @@ class Engine(object):
         self.downloaderMiddlewares = self._auto_import_instances(DOWNLOADER_MIDDLEWARES)
         self.spider_middlewaress = self._auto_import_instances(SPIDER_MIDDLEWARES)
 
+        self.p=Pool()
+        self.running=False
         self.total_request_nums = 0
         self.total_response_nums = 0
 
@@ -56,6 +59,7 @@ class Engine(object):
         logger.info("耗时：%.2f" % (stop - start).total_seconds())  # 使用日志记录运行耗时
         logger.info("总的请求数量:{}".format(self.total_request_nums))
         logger.info("总的响应数量:{}".format(self.total_response_nums))
+        logger.info("重复的请求数量:{}".format(self.scheduler.repeat_request_num))
 
     def _auto_import_instances(self,path=[],isspider=False):
 
@@ -158,18 +162,38 @@ class Engine(object):
                         pipeline.process_item(resp,spider)    #添加spider对象
         self.total_response_nums += 1
 
+
+    def _call_back(self, temp): # 这是异步线程池的callback参数指向的函数,temp参数为固定写法
+        if self.is_running:
+            self.p.apply_async(self._execute_request_response_item, callback=self._call_back,
+                               error_callback=self._error_callback)
+
+    def _error_callback(self, exception):
+        """异常回调函数"""
+        try:
+            raise exception    # 抛出异常后，才能被日志进行完整记录下来
+        except Exception as e:
+            logger.exception(e)
+
     def _start_engine(self):
+        '''
+        具体的实现引擎的细节
+        :return:
+        '''
+        self.is_running = True  # 启动引擎，设置状态为True
+        # 处理strat_urls产生的request
+        # self._start_request()
+        self.p.apply_async(self._start_request, error_callback=self._error_callback)  # 使用异步线程池中的线程执行指定的函数
 
-        self._start_request()
-
+        # 不断的处理解析过程中产生的request
+        for i in range(MAX_ASYNC_THREAD_NUMBER): # 控制最大并发数
+            self.p.apply_async(self._execute_request_response_item, callback=self._call_back, error_callback=self._error_callback)
+        # 控制判断程序何时中止
         while True:
-            time.sleep(0.001)
-            self._execute_request_response_item()
-            # 程序退出条件
-            # 成功的响应数+重复的数量>=总的请求数量 程序结束
-            # if self.total_response_nums >= self.total_request_nums:
-            if self.total_response_nums + self.scheduler.repeat_request_num >= self.total_request_nums:
-                break
-
-
-
+            time.sleep(0.001) # 避免cpu空转,避免性能消耗
+            # self._execute_request_response_item()
+            if self.total_response_nums != 0: # 因为异步，需要增加判断，响应数不能为0
+                # 成功的响应数+重复的数量>=总的请求数量 程序结束
+                if self.total_response_nums + self.scheduler.repeat_request_num >= self.total_request_nums:
+                    self.is_running = False
+                    break
