@@ -52,6 +52,7 @@ class Engine(object):
         # 3.从调度器获取请求对象，交给下载器发起请求，获取一个响应对象
         request = self.scheduler.get_request()
         # 3.1利用下载器中间件预处理请求对象
+
         request = self.downloaderMiddleware.process_request(request)
         # 4.利用下载器发起请求
         response = self.downloader.get_response(request)
@@ -60,7 +61,7 @@ class Engine(object):
         # 4.2利用爬虫中间件预处理响应对象
         self.spider_middlewares.process_response(response)
         # 5．利用爬虫的解析响应的方式，处理响应，得到结果
-        resp = self.spider.pares(response)
+        resp = self.spider.parse(response)
         # ６.判断结果对象
         # 如果是请求对象，那么就在交给调度器
         if isinstance(resp, Request):

@@ -34,7 +34,8 @@ class Spider(object):
     #     """
     #     return Item(response.body)
     # 利用生成器方式实现，提高程序的资源消耗
-    def pares(self,response):
+    def parse(self,response):
+
         '''解析请求
         并返回新的请求对象、或者数据对象
         返回值应当是一个容器，如start_requests返回值方法一样，改为生成器即可

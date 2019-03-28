@@ -131,31 +131,31 @@ class Engine(object):
         # getattr(实例化的类对象, 该类当中包含的方法名的字符串)
         # parse = getattr(self.spider, request.parse) 2.1.1.2: 修改前
         # 2.1.1.2:
-        parse = getattr(spider, request.parse)   # 修改后
+        results = getattr(spider, request.parse)   # 修改后
+        if results is not None:
+            # 如果项目中爬虫的解析函数不返回可迭代对象就会报错1.1.1.1.1.1.1
+            # for resp in self.spider.parse(response):  修改前
+            for resp in results(response):  # 修改后
+                # ６.判断结果对象
+                # 如果是请求对象，那么就在交给调度器
+                if isinstance(resp, Request):
+                    # 6.1利用爬虫中间件预处理请求对象
+                    # 在解析函数得到request对象之后，使用process_request进行处理
+                    for spider_middlewares in self.spider_middlewaress:    #1.1.1.1.1.5
+                        resp = spider_middlewares.process_request(resp)
+                    # 3.1.1.1: 给request对象增加一个spider_name属性
+                    resp.spider_name=request.spider_name
 
+                    self.scheduler.add_request(resp)
+                    self.total_request_nums += 1
+                # 7.如果不是，调用pipeline的process_item方法处理结果
+                else:
+                    # 修改后，遍历管道　　 # 就通过process_item()
 
-        # for resp in self.spider.pares(response):  修改前
-        for resp in parse(response):  # 修改后
-            # ６.判断结果对象
-            # 如果是请求对象，那么就在交给调度器
-            if isinstance(resp, Request):
-                # 6.1利用爬虫中间件预处理请求对象
-                # 在解析函数得到request对象之后，使用process_request进行处理
-                for spider_middlewares in self.spider_middlewaress:    #1.1.1.1.1.5
-                    resp = spider_middlewares.process_request(resp)
-                # 3.1.1.1: 给request对象增加一个spider_name属性
-                resp.spider_name=request.spider_name
+                    # 传递数据给管道
+                    for pipeline in self.pipelines:
 
-                self.scheduler.add_request(resp)
-                self.total_request_nums += 1
-            # 7.如果不是，调用pipeline的process_item方法处理结果
-            else:
-                # 修改后，遍历管道　　 # 就通过process_item()
-
-                # 传递数据给管道
-                for pipeline in self.pipelines:
-
-                    pipeline.process_item(resp,spider)    #添加spider对象
+                        pipeline.process_item(resp,spider)    #添加spider对象
         self.total_response_nums += 1
 
     def _start_engine(self):
@@ -166,7 +166,9 @@ class Engine(object):
             time.sleep(0.001)
             self._execute_request_response_item()
             # 程序退出条件
-            if self.total_response_nums >= self.total_request_nums:
+            # 成功的响应数+重复的数量>=总的请求数量 程序结束
+            # if self.total_response_nums >= self.total_request_nums:
+            if self.total_response_nums + self.scheduler.repeat_request_num >= self.total_request_nums:
                 break
 
 

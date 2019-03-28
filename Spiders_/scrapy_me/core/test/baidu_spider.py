@@ -6,14 +6,18 @@ class BaiduSpider(Spider):
     name='baidu'
 
     # 设置初始请求url
-    # start_urls =[]
+    start_urls =["http://www.baidu.com"]
 
-    def start_requests(self):
-        base_url = 'http://www.baidu.com'
-        yield Request(base_url)
-    #     pass
-    #
-    def parse(self, response):
-        print(response.url)
-        yield {}
-        pass
+    def parse(self,response):
+        for i in range(10):
+         yield Request(self.start_urls[0])
+
+    # def start_requests(self):
+    #     base_url = 'http://www.baidu.com'
+    #     yield Request(base_url)
+    # #     pass
+    # #
+    # def parse(self, response):
+    #     print(response.url)
+    #     yield {}
+
