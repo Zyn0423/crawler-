@@ -2,7 +2,7 @@
 
 # 构造请求对象
 class Request(object):
-    def __init__(self,url,method='GET',params=None,headers=None,data=None,meta={},parse='parse'):
+    def __init__(self,url,method='GET',params=None,headers=None,data=None,meta={},parse='parse', filter=True):
         # 请求地址
         self.url=url
         # 请求方法
@@ -17,3 +17,5 @@ class Request(object):
         self.meta=meta
 
         self.parse=parse
+
+        self.filter=filter# 是否进行去重，默认是True 表示去重!

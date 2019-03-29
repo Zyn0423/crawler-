@@ -36,6 +36,12 @@ class Scheduler(object):
         :return:
         """
         # 添加请求对象,前提是指纹没有重复
+        if not request.filter:#不需要去重
+            request.fp=self._gen_fp(request)
+            self.q.put(request)
+            logger.info("添加不去重的请求<{} {}>".format(request.method, request.url))
+            return  # 必须return
+
         if self._filter_request(request):
             self.q.put(request)
         # self.total_request_number +=1
