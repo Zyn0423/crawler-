@@ -1,7 +1,6 @@
 # 调度器组件
 # 缓存请求对象(Request)，并为下载器提供请求对象，实现请求的调度
 # 对请求对象进行去重判断
-
 # coding=utf-8
 from queue import Queue
 # from six.moves.queue import Queue
@@ -9,18 +8,27 @@ import six
 from hashlib import sha1
 from Spiders_.scrapy_me.utility.log import logger
 import w3lib.url
-class Scheduler(object):
-    '''
-     1. 缓存请求对象(Request)，并为下载器提供请求对象，实现请求的调度
 
-     2.对请求对象进行去重判断：实现去重方法_filter_request，该方法对内提供，因此设置为私有方法
-     '''
-    def __init__(self):
-        self.q=Queue()
+from Spiders_.scrapy_me.utility.queue import Queue as ReidsQueue
+from Spiders_.scrapy_me.conf.settings import SCHEDULER_PERSIST
+from Spiders_.scrapy_me.utility.set import NoramlFilterContainer, RedisFilterContainer
+
+class Scheduler(object):
+    """
+       缓存请求对象(Request)，并为下载器提供请求对象，实现请求的调度：
+       对请求对象进行去重判断：实现去重方法_filter_request，该方法对内提供，因此设置为私有方法
+       """
+    def __init__(self,collector):
+        if SCHEDULER_PERSIST:   #如果使用分布式或者是持久化，使用redis的队列
+            self.q=ReidsQueue()
+            self._filter_container = RedisFilterContainer()# 使用redis作为python的去重的容器
+        else:
+            self.q=Queue()
+            self._filter_container=NoramlFilterContainer() # 使用Python的set()集合
         # 记录总共的请求数
-        self.repeat_request_num  = 0
+        self.collector = collector
         # 在engine中阻塞的位置判断程序结束的条件：成功的响应数+重复的数量>=总的请求数量
-        self._filter_container=set()  # 去重容器,是一个集合,存储已经发过的请求的特征 url
+        # self._filter_container=set()  # 去重容器,是一个集合,存储已经发过的请求的特征 url
     def add_request(self,request):
         """
         添加url放入队列
@@ -52,12 +60,16 @@ class Scheduler(object):
         """
         request.fp = self._gen_fp(request)  # 给request对象增加一个fp指纹属性
 
-        if request.fp not in self._filter_container:
+        # if request.fp not in self._filter_container:
             # 向指纹容器集合添加一个指纹
-            self._filter_container.add(request.fp)
+        if not self._filter_container.exists(request.fp):
+
+            self._filter_container.add_fp(request.fp) # 向指纹容器集合添加一个指纹
             return True
         else:
-            self.repeat_request_num +=1
+
+            self.collector.incr(self.collector.repeat_request_nums_key)
+
             logger.info("发现重复的请求：<{} {}>".format(request.method, request.url))
 
             return False
@@ -65,6 +77,8 @@ class Scheduler(object):
 
 
         pass
+
+
     def _gen_fp(self,request):
         # """
         # 生成并返回request对象的指纹
