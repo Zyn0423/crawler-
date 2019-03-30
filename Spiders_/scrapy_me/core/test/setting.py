@@ -10,8 +10,9 @@ SPIDERS = [
     # 'spiders.douban.DoubanSpider',
     # 'douban_spider.DoubanSpider',
     'baidu_spider.BaiduSpider',
-    'baidu2_spider.Baidu2Spider'
+    # 'baidu2_spider.Baidu2Spider'
 ]
+
 
 # 启用的管道类
 PIPELINES = [
@@ -35,3 +36,10 @@ ASYNC_TYPE = 'coroutine' # 覆盖为协程的方式
 # 如果是False, 不使用redis队列，会使用python的set存储指纹和请求
 
 SCHEDULER_PERSIST = True
+
+
+# 指纹是否持久化
+# 默认为True 即持久化请求对象的指纹,达到断点续爬的目的
+# 如果为False,则在爬虫结束的时候清空指纹库
+# 可以在项目的settings.py中重新赋值进行覆盖
+FP_PERSIST = False

@@ -33,6 +33,14 @@ ASYNC_TYPE = 'thread' # 默认为线程的方式
 # 如果是False, 不使用redis队列，会使用python的set存储指纹和请求
 SCHEDULER_PERSIST = True
 
+
+
+# 指纹是否持久化
+# 默认为True 即持久化请求对象的指纹,达到断点续爬的目的
+# 如果为False,则在爬虫结束的时候清空指纹库
+# 可以在项目的settings.py中重新赋值进行覆盖
+FP_PERSIST = True
+
 # redis默认配置,默认为本机的redis
 REDIS_SET_NAME = 'scrapy_me_fp_set' # fp集合
 REDIS_QUEUE_NAME = 'scrapy_me_request_queue' # request队列
