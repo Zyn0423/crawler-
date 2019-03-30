@@ -8,8 +8,9 @@ DEFAULT_LOG_FILENAME = '日志.log'    # 默认日志文件名称
 SPIDERS = [
     # 'spiders.baidu.BaiduSpider',
     # 'spiders.douban.DoubanSpider',
-    'douban_spider.DoubanSpider',
-    'baidu_spider.BaiduSpider'
+    # 'douban_spider.DoubanSpider',
+    'baidu_spider.BaiduSpider',
+    'baidu2_spider.Baidu2Spider'
 ]
 
 # 启用的管道类

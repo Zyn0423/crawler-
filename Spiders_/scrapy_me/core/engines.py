@@ -121,8 +121,9 @@ class Engine(object):
         # 获取ＵＲＬ
         # 1.爬虫模块发出初始请求
         # 1.1.1.1 遍历字典取出k ,v
-        for spider_name, spider in self.spiders.items():
+
             # v:spider
+        def func(spider_name,spider):
             for start_request in spider.start_requests():
                 # 1.1利用爬虫中间件预处理请求对象
                 for spider_middlewares in self.spider_middlewaress:  # 遍历爬虫对象１．１．１．１．１
@@ -133,6 +134,10 @@ class Engine(object):
                 self.scheduler.add_request(start_request)
 
                 self.collector.incr(self.collector.request_nums_key)
+
+        for spider_name, spider in self.spiders.items():
+            # 把执行每个爬虫的start_requests方法，设置为异步的
+            self.p.apply_async(func=func,args=(spider_name,spider),error_callback=self._error_callback)
 
     def _execute_request_response_item(self):
         # 3.从调度器获取请求对象，交给下载器发起请求，获取一个响应对象
@@ -216,11 +221,16 @@ class Engine(object):
         for i in range(MAX_ASYNC_THREAD_NUMBER):  # 控制最大并发数
             self.p.apply_async(self._execute_request_response_item, callback=self._call_back,
                                error_callback=self._error_callback)
+
+        timed_task_sum = sum([spider.timed_task for spider in self.spiders.values()])  # 对[False,True]求和
+        start_urls_nums = sum([len(spider.start_urls) for spider in self.spiders.values()])
         # 控制判断程序何时中止
         while True:
             time.sleep(0.001)  # 避免cpu空转,避免性能消耗
             # self._execute_request_response_item()
-            if self.collector.request_nums != 0:  # 因为异步，需要增加判断，响应数不能为0
+            # if self.collector.request_nums != 0:  # 因为异步，需要增加判断，响应数不能为0
+            # 有定时爬虫时,一直不退出程序; 没有定时增量爬虫,才判断是否退出!
+            if self.collector.request_nums+self.collector.repeat_request_nums >= start_urls_nums and timed_task_sum == 0:
                 # 成功的响应数+重复的数量>=总的请求数量 程序结束
                 # if self.total_response_nums + self.scheduler.repeat_request_num >= self.total_request_nums:
                 # 这个地方不能用response_nums作为判断标准了

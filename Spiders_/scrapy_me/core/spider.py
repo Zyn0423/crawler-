@@ -12,6 +12,9 @@ class Spider(object):
     '''
     name=''
     start_urls = []
+    # 定时爬虫标识
+    # 默认为false,表示不是定时爬虫
+    timed_task = False
 
     # def start_requests(self):
     #     """
