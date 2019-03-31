@@ -48,16 +48,14 @@ class TencentVIPMovie(object):
         self.file.close()
 
     def run(self):
-        url = self.url
+        # url = self.url
         while True:
             time.sleep(2)
-            data = self.get_data(url)
-
-            data_list,url = self.parse_data(data)
-            print(data_list)
+            data = self.get_data(self.url)
+            data_list,self.url = self.parse_data(data)
             self.save_data(data_list)
 
-            if not url:
+            if not self.url:
                 break
 
 
