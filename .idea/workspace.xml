@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fb0cb9b1-d212-4dd5-96b9-de43e2001469" name="Default" comment="'构造下载器对象,并返回'">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Spiders_/scrapy_me/core/test/Boss.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Spiders_/scrapy_me/conf/default_settings.py" afterPath="$PROJECT_DIR$/Spiders_/scrapy_me/conf/default_settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Spiders_/scrapy_me/core/spider.py" afterPath="$PROJECT_DIR$/Spiders_/scrapy_me/core/spider.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Spiders_/scrapy_me/core/test/sina_.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Spiders_/scrapy_me/core/test/setting.py" afterPath="$PROJECT_DIR$/Spiders_/scrapy_me/core/test/setting.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Spiders_/scrapy_me/http/request.py" afterPath="$PROJECT_DIR$/Spiders_/scrapy_me/http/request.py" />
     </list>
     <list id="750e537e-09be-434c-a6ff-325ad73a674e" name="实现框架的默认配置文件" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,7 +17,7 @@
     <SUITE FILE_PATH="coverage/crawler-$meipai.coverage" NAME="meipai Coverage Results" MODIFIED="1554137732495" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Directional_crawler" />
     <SUITE FILE_PATH="coverage/crawler-$engine.coverage" NAME="engine Coverage Results" MODIFIED="1553087673416" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Spiders_/scrapy_me/core" />
     <SUITE FILE_PATH="coverage/crawler-$selenium_text.coverage" NAME="selenium_text Coverage Results" MODIFIED="1551859454200" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Directional_crawler" />
-    <SUITE FILE_PATH="coverage/crawler-$main.coverage" NAME="main Coverage Results" MODIFIED="1555917418384" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Spiders_/scrapy_me/core/test" />
+    <SUITE FILE_PATH="coverage/crawler-$main.coverage" NAME="main Coverage Results" MODIFIED="1555923634831" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Spiders_/scrapy_me/core/test" />
     <SUITE FILE_PATH="coverage/crawler-$kugou.coverage" NAME="kugou Coverage Results" MODIFIED="1554132453914" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Directional_crawler" />
     <SUITE FILE_PATH="coverage/crawler-$shuangseqiu_caipiao.coverage" NAME="shuangseqiu_caipiao Coverage Results" MODIFIED="1554218677197" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Directional_crawler" />
     <SUITE FILE_PATH="coverage/crawler-$renrenwang_login.coverage" NAME="renrenwang_login Coverage Results" MODIFIED="1552901323241" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/js-crawler" />
@@ -60,9 +56,33 @@
       <file leaf-file-name="default_settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Spiders_/scrapy_me/conf/default_settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="456">
-              <caret line="50" column="7" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="7" />
+            <state relative-caret-position="525">
+              <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sina_.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Spiders_/scrapy_me/core/test/sina_.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="177">
+              <caret line="80" column="17" lean-forward="false" selection-start-line="80" selection-start-column="6" selection-end-line="80" selection-end-column="17" />
+              <folding>
+                <element signature="e#4368#4379#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/.virtualenvs/ana/lib/python3.5/site-packages/js2py/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="388">
+              <caret line="65" column="9" lean-forward="false" selection-start-line="65" selection-start-column="9" selection-end-line="65" selection-end-column="9" />
+              <folding>
+                <element signature="e#2756#2787#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -70,8 +90,8 @@
       <file leaf-file-name="Boss.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Spiders_/scrapy_me/core/test/Boss.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="13" column="22" lean-forward="false" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="51" />
               <folding>
                 <element signature="e#0#49#0" expanded="true" />
               </folding>
@@ -82,8 +102,8 @@
       <file leaf-file-name="setting.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Spiders_/scrapy_me/core/test/setting.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="9" lean-forward="false" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
+            <state relative-caret-position="195">
+              <caret line="16" column="22" lean-forward="false" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -132,7 +152,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Spiders_/tenxun/tenxun/spiders/tencent.py" />
         <option value="$PROJECT_DIR$/Spiders_/tenxun/tenxun/items.py" />
         <option value="$PROJECT_DIR$/Spiders_/tenxun/tencent.json" />
         <option value="$PROJECT_DIR$/Spiders_/tenxun/tenxun/spiders/Boss_.py" />
@@ -182,6 +201,7 @@
         <option value="$PROJECT_DIR$/Spiders_/scrapy_me/core/spider.py" />
         <option value="$PROJECT_DIR$/Spiders_/scrapy_me/http/request.py" />
         <option value="$PROJECT_DIR$/Spiders_/scrapy_me/core/test/tencent.py" />
+        <option value="$PROJECT_DIR$/Spiders_/scrapy_me/core/test/sina_.py" />
         <option value="$PROJECT_DIR$/Spiders_/scrapy_me/core/test/setting.py" />
       </list>
     </option>
@@ -759,7 +779,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="69" y="24" width="1847" height="831" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28199446" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -767,9 +787,9 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49859944" sideWeight="0.49806094" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.6535326" sideWeight="0.66426593" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4456522" sideWeight="0.66426593" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23777173" sideWeight="0.7473684" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4646739" sideWeight="0.7473684" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -850,15 +870,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Spiders_/scrapy_me/core/default_settings.py" />
-    <entry file="file://$PROJECT_DIR$/Spiders_/text_package_/scrapy_me/core/engine.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-23">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Spiders_/scrapy_me/main.py" />
     <entry file="file://$PROJECT_DIR$/Spiders_/scrapy_me/spiders.py" />
     <entry file="file://$PROJECT_DIR$/Spiders_/scrapy_me/utility/log.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1102,7 +1113,7 @@
         <state relative-caret-position="-324">
           <caret line="12" column="34" lean-forward="true" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
           <folding>
-            <element signature="e#137#148#0" expanded="true" />
+            <element signature="e#137#148#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1202,16 +1213,8 @@
         <state relative-caret-position="432">
           <caret line="24" column="39" lean-forward="true" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
           <folding>
-            <element signature="e#15#66#0" expanded="true" />
+            <element signature="e#15#66#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Spiders_/scrapy_me/conf/default_settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="50" column="7" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1225,14 +1228,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Spiders_/scrapy_me/core/test/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="18" lean-forward="true" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Spiders_/scrapy_me/core/engines.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="82">
@@ -1241,20 +1236,64 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Spiders_/scrapy_me/conf/default_settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Spiders_/scrapy_me/core/test/Boss.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="13" column="22" lean-forward="false" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="51" />
           <folding>
             <element signature="e#0#49#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Spiders_/scrapy_me/core/test/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="18" lean-forward="true" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.virtualenvs/ana/lib/python3.5/site-packages/js2py/evaljs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13">
+          <caret line="125" column="6" lean-forward="false" selection-start-line="125" selection-start-column="6" selection-end-line="125" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.virtualenvs/ana/lib/python3.5/site-packages/js2py/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="65" column="9" lean-forward="false" selection-start-line="65" selection-start-column="9" selection-end-line="65" selection-end-column="9" />
+          <folding>
+            <element signature="e#2756#2787#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Spiders_/scrapy_me/core/test/sina_.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="80" column="17" lean-forward="false" selection-start-line="80" selection-start-column="6" selection-end-line="80" selection-end-column="17" />
+          <folding>
+            <element signature="e#4368#4379#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Spiders_/scrapy_me/core/test/setting.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="9" lean-forward="false" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
+        <state relative-caret-position="195">
+          <caret line="16" column="22" lean-forward="false" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
           <folding />
         </state>
       </provider>

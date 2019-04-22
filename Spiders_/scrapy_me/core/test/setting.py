@@ -13,7 +13,8 @@ SPIDERS = [
 
     # 'baidu2_spider.Baidu2Spider'
 
-    'Boss.BossSpider'
+    # 'Boss.BossSpider',
+    'sina_.SinaGunDong'
 ]
 
 
