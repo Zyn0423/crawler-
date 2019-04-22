@@ -1,8 +1,8 @@
 # coding='utf-8'
-
+from Spiders_.scrapy_me.conf.settings import HEADERS
 # 构造请求对象
 class Request(object):
-    def __init__(self,url,method='GET',params=None,headers=None,data=None,meta={},parse='parse', filter=True):
+    def __init__(self,url,method='GET',params=None,headers=HEADERS,data=None,meta={},parse='parse', filter=True):
         # 请求地址
         self.url=url
         # 请求方法

@@ -9,8 +9,11 @@ SPIDERS = [
     # 'spiders.baidu.BaiduSpider',
     # 'spiders.douban.DoubanSpider',
     # 'douban_spider.DoubanSpider',
-    'baidu_spider.BaiduSpider',
+    # 'baidu_spider.BaiduSpider',
+
     # 'baidu2_spider.Baidu2Spider'
+
+    'Boss.BossSpider'
 ]
 
 

@@ -1,6 +1,7 @@
 # coding=utf-8
 from Spiders_.scrapy_me.http.request import Request
 from Spiders_.scrapy_me.item import Item
+from Spiders_.scrapy_me.conf.settings import HEADERS
 # 爬虫组件
 # 构建请求信息(初始的)，也就是生成请求对象(Request)
 # 解析响应对象，返回数据对象(Item)
@@ -26,7 +27,7 @@ class Spider(object):
     def start_requests(self):
         '''构建初始请求对象并返回'''
         for url in self.start_urls:
-            yield Request(url)
+            yield Request(url,headers=HEADERS,filter=False)
 
     # def pares(self,response):
     #
